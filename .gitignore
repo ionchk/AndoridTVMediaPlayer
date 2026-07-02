@@ -1,0 +1,28 @@
+# SDK / JDK / Build Tools / Local dependencies
+/android-sdk/
+/gradle-temp/
+/jdk17/
+
+# Built binaries
+/SmartTVMediaPlayer.apk
+
+# Android build and local files
+/android/.gradle/
+/android/local.properties
+/android/app/build/
+/android/.idea/
+*.iml
+
+# Server uploads, DB, and temporary files
+/server/uploads/*
+!/server/uploads/.gitkeep
+/server/thumbnails/*
+!/server/thumbnails/.gitkeep
+/server/media_player.db
+/server/__pycache__/
+*.pyc
+
+# Local IDE settings
+.vscode/
+.idea/
+.DS_Store

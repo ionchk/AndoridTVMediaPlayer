@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart TV Media Player — Управление</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">📺</div>
+            <div class="sidebar-title">
+                <h2>Smart TV</h2>
+                <span>Media Player</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-section="dashboard" id="nav-dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Дашборд</span>
+            </a>
+            <a href="#" class="nav-item" data-section="media" id="nav-media">
+                <span class="nav-icon">🎬</span>
+                <span class="nav-label">Медиа файлы</span>
+            </a>
+            <a href="#" class="nav-item" data-section="playlist" id="nav-playlist">
+                <span class="nav-icon">📋</span>
+                <span class="nav-label">Плейлист</span>
+            </a>
+            <a href="#" class="nav-item" data-section="settings" id="nav-settings">
+                <span class="nav-icon">⚙️</span>
+                <span class="nav-label">Настройки</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="btn-logout" id="logoutBtn">
+                <span>🚪</span> Выйти
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ═══════ Dashboard Section ═══════ -->
+        <section class="section active" id="section-dashboard">
+            <div class="section-header">
+                <h1>Дашборд</h1>
+                <p>Обзор системы Smart TV Media Player</p>
+            </div>
+
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card" id="stat-total">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #7c5cfc, #6c4ce0);">📁</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalFiles">0</span>
+                        <span class="stat-label">Всего файлов</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-active">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #5ce0d8, #4ab8b0);">✅</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statActiveFiles">0</span>
+                        <span class="stat-label">Активных</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-size">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fc5c9c, #e04c8c);">💾</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalSize">0 MB</span>
+                        <span class="stat-label">Объём</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-types">
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fcb95c, #e0a04c);">🎯</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTypes">—</span>
+                        <span class="stat-label">Типы файлов</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card quick-upload-card" id="quickUploadCard">
+                <h3>⚡ Быстрая загрузка</h3>
+                <p>Перетащите файлы сюда или нажмите для выбора</p>
+                <div class="drop-zone mini-drop" id="quickDropZone">
+                    <input type="file" id="quickFileInput" multiple accept=".mp4,.jpg,.jpeg,.xlsx,.avi,.mov" hidden>
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">📤</span>
+                        <span>MP4, AVI, MOV, JPG, JPEG, XLSX</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ Media Section ═══════ -->
+        <section class="section" id="section-media">
+            <div class="section-header">
+                <h1>Медиа файлы</h1>
+                <div class="section-actions">
+                    <button class="btn btn-danger" id="bulkDeleteBtn" style="display:none;">
+                        🗑️ Удалить выбранные
+                    </button>
+                    <button class="btn btn-primary" id="uploadBtn">
+                        📤 Загрузить файлы
+                    </button>
+                </div>
+            </div>
+
+            <!-- Upload area -->
+            <div class="upload-area" id="uploadArea" style="display:none;">
+                <div class="drop-zone" id="mainDropZone">
+                    <input type="file" id="mainFileInput" multiple accept=".mp4,.jpg,.jpeg,.xlsx,.avi,.mov" hidden>
+                    <div class="drop-zone-content">
+                        <div class="drop-icon-large">📤</div>
+                        <h3>Перетащите файлы сюда</h3>
+                        <p>или нажмите для выбора</p>
+                        <div class="supported-formats">
+                            <span class="format-badge">MP4</span>
+                            <span class="format-badge">AVI</span>
+                            <span class="format-badge">MOV</span>
+                            <span class="format-badge">JPG</span>
+                            <span class="format-badge">JPEG</span>
+                            <span class="format-badge">XLSX</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display:none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">Загрузка...</span>
+                </div>
+            </div>
+
+            <!-- Media grid -->
+            <div class="media-grid" id="mediaGrid">
+                <div class="empty-state" id="emptyState">
+                    <span class="empty-icon">📭</span>
+                    <h3>Нет медиа файлов</h3>
+                    <p>Загрузите файлы для начала работы</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ Playlist Section ═══════ -->
+        <section class="section" id="section-playlist">
+            <div class="section-header">
+                <h1>Предпросмотр плейлиста</h1>
+                <p>Текущий порядок воспроизведения с учётом приоритетов</p>
+            </div>
+
+            <div class="playlist-preview" id="playlistPreview">
+                <div class="playlist-controls">
+                    <button class="btn btn-secondary" id="refreshPlaylist">🔄 Обновить</button>
+                    <span class="playlist-info" id="playlistInfo"></span>
+                </div>
+                <div class="playlist-timeline" id="playlistTimeline"></div>
+            </div>
+        </section>
+
+        <!-- ═══════ Settings Section ═══════ -->
+        <section class="section" id="section-settings">
+            <div class="section-header">
+                <h1>Настройки</h1>
+                <p>Общие настройки системы</p>
+            </div>
+
+            <div class="settings-grid">
+                <div class="card settings-card">
+                    <h3>🔑 API-ключ для TV</h3>
+                    <p>Используйте этот ключ для подключения Smart TV устройств</p>
+                    <div class="api-key-display">
+                        <code id="apiKeyDisplay">Загрузка...</code>
+                        <button class="btn btn-icon" id="copyApiKey" title="Копировать">📋</button>
+                    </div>
+                    <button class="btn btn-warning" id="regenerateApiKey">🔄 Сгенерировать новый ключ</button>
+                </div>
+
+                <div class="card settings-card">
+                    <h3>🔗 Быстрое сопряжение ТВ</h3>
+                    <p>Введите 6-значный код, отображаемый на экране телевизора:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <input type="text" id="pairingCodeInput" placeholder="123456" class="input-field" style="text-align: center; font-size: 18px; letter-spacing: 2px; max-width: 180px;" maxlength="6">
+                        <button class="btn btn-primary" id="submitPairingBtn">Сопрячь ТВ</button>
+                    </div>
+                    <div id="pairingMessage" style="margin-top: 12px; font-size: 13px; min-height: 18px;"></div>
+                </div>
+
+                <div class="card settings-card">
+                    <h3>⏱️ Время показа по умолчанию</h3>
+                    <p>Время отображения для новых загруженных файлов</p>
+                    <div class="duration-setting">
+                        <input type="number" id="defaultDuration" min="1" max="3600" value="10" class="input-field">
+                        <span class="unit">сек</span>
+                        <button class="btn btn-primary" id="saveDuration">💾 Сохранить</button>
+                    </div>
+                </div>
+
+                <div class="card settings-card">
+                    <h3>🔐 Смена пароля</h3>
+                    <p>Изменить пароль администратора</p>
+                    <div class="password-change">
+                        <input type="password" id="oldPassword" placeholder="Текущий пароль" class="input-field">
+                        <input type="password" id="newPassword" placeholder="Новый пароль" class="input-field">
+                        <button class="btn btn-primary" id="changePasswordBtn">🔐 Изменить</button>
+                    </div>
+                </div>
+
+                <div class="card settings-card">
+                    <h3>📡 Подключение TV</h3>
+                    <p>Инструкция для настройки Smart TV приложения</p>
+                    <div class="connection-info">
+                        <div class="info-row">
+                            <span class="info-label">IP сервера:</span>
+                            <code id="serverIp">—</code>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Порт:</span>
+                            <code>5000</code>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">API-ключ:</span>
+                            <code>Скопируйте выше ↑</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-card">
+            <h3 id="confirmTitle">Подтверждение</h3>
+            <p id="confirmText">Вы уверены?</p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="confirmCancel">Отмена</button>
+                <button class="btn btn-danger" id="confirmOk">Удалить</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

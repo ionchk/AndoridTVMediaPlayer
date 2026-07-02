@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0B0B14">
+
+    <!-- Background gradient -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_gradient" />
+
+    <!-- Center Card -->
+    <LinearLayout
+        android:layout_width="480dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:background="@drawable/card_bg"
+        android:padding="40dp"
+        android:elevation="8dp">
+
+        <!-- Logo -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="📺"
+            android:textSize="48sp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Smart TV Media Player"
+            android:textColor="#E8E6F0"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Настройка подключения к серверу"
+            android:textColor="#8A87A0"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp" />
+
+        <!-- Pairing Container (Initially Visible) -->
+        <LinearLayout
+            android:id="@+id/layout_pairing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <ProgressBar
+                android:id="@+id/pairing_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:indeterminateTint="#7C5CFC" />
+
+            <TextView
+                android:id="@+id/pairing_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Поиск сервера в локальной сети..."
+                android:textColor="#E8E6F0"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Code display container -->
+            <LinearLayout
+                android:id="@+id/layout_code_display"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="КОД СОПРЯЖЕНИЯ"
+                    android:textColor="#8A87A0"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:id="@+id/txt_pairing_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="000 000"
+                    android:textColor="#7C5CFC"
+                    android:textSize="38sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:layout_marginBottom="20dp" />
+
+                <TextView
+                    android:id="@+id/txt_pairing_instructions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Откройте панель управления на компьютере или телефоне и введите этот код"
+                    android:textColor="#8A87A0"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_switch_to_manual"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Настроить вручную"
+                android:textColor="#8A87A0"
+                android:textSize="14sp"
+                android:background="@drawable/btn_secondary"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <!-- Manual Setup Container (Initially Gone) -->
+        <LinearLayout
+            android:id="@+id/layout_manual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- IP Address -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="IP адрес сервера"
+                android:textColor="#8A87A0"
+                android:textSize="13sp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/input_ip"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:hint="192.168.1.100"
+                android:textColorHint="#4A4860"
+                android:textColor="#E8E6F0"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <!-- Port -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Порт"
+                android:textColor="#8A87A0"
+                android:textSize="13sp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/input_port"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:hint="5000"
+                android:textColorHint="#4A4860"
+                android:textColor="#E8E6F0"
+                android:textSize="16sp"
+                android:paddingHorizontal="16dp"
+                android:inputType="number"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <!-- API Key -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="API-ключ"
+                android:textColor="#8A87A0"
+                android:textSize="13sp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/input_api_key"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:hint="Вставьте API-ключ из панели управления"
+                android:textColorHint="#4A4860"
+                android:textColor="#E8E6F0"
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
+                android:inputType="text"
+                android:singleLine="true"
+                android:layout_marginBottom="24dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+
+            <!-- Status -->
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#8A87A0"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:visibility="visible" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                android:indeterminateTint="#7C5CFC" />
+
+            <!-- Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn_test"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="🔍 Тест"
+                    android:textColor="#7C5CFC"
+                    android:textSize="14sp"
+                    android:background="@drawable/btn_secondary"
+                    android:focusable="true" />
+
+                <Button
+                    android:id="@+id/btn_connect"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="▶ Запуск"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:background="@drawable/btn_primary"
+                    android:focusable="true" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

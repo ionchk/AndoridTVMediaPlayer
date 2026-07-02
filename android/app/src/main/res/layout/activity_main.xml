@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- Image display (fullscreen) -->
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:background="#000000" />
+
+    <!-- Video display (fullscreen) -->
+    <VideoView
+        android:id="@+id/video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- Fade transition overlay -->
+    <View
+        android:id="@+id/fade_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:visibility="gone" />
+
+    <!-- Status overlay (loading, errors) -->
+    <TextView
+        android:id="@+id/status_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="#8A87A0"
+        android:textSize="20sp"
+        android:lineSpacingMultiplier="1.4"
+        android:background="#0B0B14"
+        android:visibility="gone" />
+
+</FrameLayout>
