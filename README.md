@@ -1,5 +1,7 @@
 # Smart TV Media Player - Installation and Running Guide
 
+[Читать на русском языке](README.ru.md)
+
 * **Prerequisites**:
   * Python 3.8 or higher installed on your system.
   * Windows operating system (to use the provided `.bat` automation scripts).
